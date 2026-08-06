@@ -16,10 +16,10 @@ const companyLinks = [
 ];
 
 const socials = [
-  { icon: Globe, label: "Website" },
-  { icon: MessageCircle, label: "WhatsApp" },
-  { icon: Mail, label: "Email" },
-  { icon: Share2, label: "Share" },
+  { icon: Globe, label: "Website", href: "#" },
+  { icon: MessageCircle, label: "WhatsApp", href: "#" },
+  { icon: Mail, label: "Email", href: "#" },
+  { icon: Share2, label: "Share", href: "#" },
 ];
 
 export function Footer() {
@@ -41,14 +41,15 @@ export function Footer() {
               tasks, so you can focus on growing your business.
             </p>
             <div className="mt-5 flex items-center gap-2.5">
-              {socials.map(({ icon: Icon, label }) => (
-                <span
+              {socials.map(({ icon: Icon, label, href }) => (
+                <a
                   key={label}
+                  href={href}
                   aria-label={label}
                   className="flex size-8 items-center justify-center rounded-full border border-line-strong text-ink-soft transition-colors hover:border-ink hover:text-ink"
                 >
                   <Icon className="size-3.5" strokeWidth={1.75} />
-                </span>
+                </a>
               ))}
             </div>
           </div>
