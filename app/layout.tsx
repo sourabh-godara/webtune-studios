@@ -22,21 +22,44 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://webtunestudios.in"),
   title: "WebTune Studios — Websites & Automation That Grow Your Business",
   description:
     "WebTune Studios builds premium business websites and automates repetitive operations — lead capture, CRM sync, WhatsApp follow-ups, and AI support — so you can focus on scaling revenue.",
   keywords: [
+    "webtune studios",
+    "webtune",
+    "webtunestudios",
     "web development agency",
     "business automation",
     "AI solutions",
-    "WebTune Studios",
     "Mohali",
   ],
+  authors: [{ name: "WebTune Studios" }],
+  creator: "WebTune Studios",
+  publisher: "WebTune Studios",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: "WebTune Studios — Websites & Automation That Grow Your Business",
     description:
       "Premium websites and business automation for modern companies. Book a free consultation.",
+    url: "https://webtunestudios.in",
+    siteName: "WebTune Studios",
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WebTune Studios — Websites & Automation That Grow Your Business",
+    description:
+      "Premium websites and business automation for modern companies. Book a free consultation.",
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
