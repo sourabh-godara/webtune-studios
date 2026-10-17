@@ -179,7 +179,7 @@ function ChatBubble({
         className={cn(
           "max-w-[80%] rounded-[10px] px-3 py-2 text-[11.5px] leading-snug",
           align === "right"
-            ? "rounded-tr-[3px] bg-signal text-white"
+            ? "rounded-tr-[3px] bg-signal text-black font-medium"
             : "rounded-tl-[3px] border border-line-strong bg-panel text-ink",
         )}
       >

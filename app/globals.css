@@ -2,35 +2,59 @@
 @import "tw-animate-css";
 
 /* ---------------------------------------------------------
-   WebTune Studios — design tokens
-   Direction: "control panel" — precise, light, systematic.
-   Paper background, ink text, one signal color (orange).
+   WebTune Studios — design tokens (Crafto Web Agency reference)
+   Palette: Pure white paper, deep ink, Electric Lime (#b5ff00).
+   Zero orange.
 --------------------------------------------------------- */
 
 :root {
-  --paper: #faf9f6;
-  --panel: #ffffff;
-  --ink: #15140f;
-  --ink-soft: #6f6c62;
-  --ink-faint: #a6a397;
-  --line: #ece9e0;
-  --line-strong: #e1ddd0;
-  --signal: #ff5a1f;
-  --signal-deep: #d4460e;
-  --signal-soft: #fff1ea;
+  --paper: #ffffff;
+  --panel: #fbfbfb;
+  --ink: #111111;
+  --ink-deep: #161616;
+  --ink-soft: #6f7071;
+  --ink-faint: #9c9c9c;
+  --line: #ededed;
+  --line-strong: #dedede;
+  --signal: #b5ff00;
+  --signal-deep: #9ee000;
+  --signal-soft: #f4ffd9;
+  --on-signal: #000000;
+  /* text/icons placed on the lime accent */
   --success: #1a9c5c;
 
-  --font-display: var(--font-bricolage), "Bricolage Grotesque", ui-sans-serif, sans-serif;
-  --font-body: var(--font-manrope), "Manrope", ui-sans-serif, sans-serif;
+  /* Dark section tokens */
+  --dark-bg: #141416;
+  --dark-panel: #1d1d21;
+  --dark-ink: #ffffff;
+  --dark-ink-soft: #9f9fa4;
+  --dark-ink-faint: #6e6e73;
+  --dark-line: #26262a;
+
+  --font-display: var(--font-inter), "Inter", ui-sans-serif, sans-serif;
+  --font-body: var(--font-inter), "Inter", var(--font-manrope), ui-sans-serif, sans-serif;
   --font-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
 
   --radius: 6px;
+
+  /* Layout */
+  --section-py: clamp(80px, 10vw, 130px);
+  --container-max: 1240px;
+  --container-narrow: 1100px;
+  --grid-columns: 4;
+  --grid-line-color: var(--line);
+
+  /* Hero */
+  --size-sunburst: min(85vw, 44rem);
+  --text-hero-word: clamp(260px, 44vw, 650px);
+  --tracking-hero-word: -0.062em;
 }
 
 @theme inline {
   --color-paper: var(--paper);
   --color-panel: var(--panel);
   --color-ink: var(--ink);
+  --color-ink-deep: var(--ink-deep);
   --color-ink-soft: var(--ink-soft);
   --color-ink-faint: var(--ink-faint);
   --color-line: var(--line);
@@ -39,6 +63,18 @@
   --color-signal-deep: var(--signal-deep);
   --color-signal-soft: var(--signal-soft);
   --color-success: var(--success);
+
+  /* Accent aliases (used by Hero): change --signal to rebrand everything */
+  --color-accent: var(--signal);
+  --color-accent-hover: var(--signal-deep);
+  --color-on-accent: var(--on-signal);
+
+  --color-dark-bg: var(--dark-bg);
+  --color-dark-panel: var(--dark-panel);
+  --color-dark-ink: var(--dark-ink);
+  --color-dark-ink-soft: var(--dark-ink-soft);
+  --color-dark-ink-faint: var(--dark-ink-faint);
+  --color-dark-line: var(--dark-line);
 
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
@@ -50,14 +86,23 @@
   --animate-draw: draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
   --animate-node-pulse: node-pulse 2.4s ease-in-out infinite;
   --animate-drift: drift 14s ease-in-out infinite;
+  --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+/* Typography scale: generates text-hero-word, text-hero-title, etc. */
+@theme {
+  --text-hero-word: clamp(260px, 44vw, 650px);
+  --text-hero-watermark: clamp(7.5rem, 22vw, 20rem);
+  --text-hero-title: clamp(2.75rem, 7.2vw, 5.75rem);
+  --text-section-title: clamp(2rem, 5vw, 3.25rem);
+  --text-card-title: clamp(1.75rem, 3vw, 2.125rem);
+
+  --tracking-hero-word: -0.062em;
+  --tracking-display: -0.035em;
 }
 
 * {
   border-color: var(--line);
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -68,10 +113,28 @@ body {
 
 ::selection {
   background: var(--signal);
-  color: #fff;
+  color: var(--on-signal);
 }
 
-/* Blueprint dot-grid texture, used sparingly on hero + CTA */
+/* Lenis smooth scroll styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Blueprint dot-grid texture */
 .bg-dot-grid {
   background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
   background-size: 28px 28px;
@@ -82,12 +145,55 @@ body {
   text-wrap: balance;
 }
 
-/* Signature: automation pipeline diagram animations */
+/* ---- Marquee ---- */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ---- Button hover fill effect ---- */
+.btn-fill-hover {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-fill-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-fill-hover:hover::before {
+  transform: scaleX(1);
+}
+
+/* ---- Signature animations ---- */
 @keyframes fade-up {
   from {
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -98,39 +204,94 @@ body {
   from {
     stroke-dashoffset: var(--dash, 400);
   }
+
   to {
     stroke-dashoffset: 0;
   }
 }
 
 @keyframes node-pulse {
+
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 90, 31, 0);
+    box-shadow: 0 0 0 0 transparent;
     border-color: var(--line-strong);
   }
+
   15% {
-    box-shadow: 0 0 0 5px rgba(255, 90, 31, 0.12);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--signal) 35%, transparent);
     border-color: var(--signal);
   }
+
   30%,
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 90, 31, 0);
+    box-shadow: 0 0 0 0 transparent;
     border-color: var(--line-strong);
   }
 }
 
 @keyframes drift {
+
   0%,
   100% {
     transform: translate(0, 0);
   }
+
   50% {
     transform: translate(14px, -10px);
   }
 }
 
+/* ---- Dark section utility ---- */
+.section-dark {
+  background-color: var(--dark-bg);
+  color: var(--dark-ink);
+}
+
+.section-dark .text-ink {
+  color: var(--dark-ink);
+}
+
+.section-dark .text-ink-soft {
+  color: var(--dark-ink-soft);
+}
+
+.section-dark .text-ink-faint {
+  color: var(--dark-ink-faint);
+}
+
+.section-dark .border-line {
+  border-color: var(--dark-line);
+}
+
+.section-dark .border-line-strong {
+  border-color: var(--dark-line);
+}
+
+.section-dark .bg-panel {
+  background-color: var(--dark-panel);
+}
+
+/* ---- Grid lines entrance animation ---- */
+@keyframes grid-line-draw {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+.animate-grid-line {
+  transform-origin: top;
+  animation: grid-line-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -138,5 +299,15 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+  }
+
+  .animate-grid-line {
+    animation: none !important;
+    transform: scaleY(1) !important;
+    opacity: 1 !important;
   }
 }

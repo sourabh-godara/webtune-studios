@@ -17,7 +17,7 @@ export function WorkHero() {
         }}
         aria-hidden
       />
-      <div className="relative mx-auto max-w-[860px] px-6 pb-16 pt-16 text-center sm:pb-20 sm:pt-20 lg:px-8">
+      <div className="relative mx-auto max-w-[860px] px-6 pb-16 pt-24 text-center sm:pb-20 sm:pt-32 lg:px-8">
         <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-signal-deep">
           Selected work
         </span>

@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Bricolage_Grotesque, Manrope, IBM_Plex_Mono } from "next/font/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { GridLines } from "@/components/grid-lines";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
@@ -71,9 +79,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bricolage.variable} ${manrope.variable} ${plexMono.variable} bg-paper text-ink antialiased font-sans`}
+        className={`${inter.variable} ${bricolage.variable} ${manrope.variable} ${plexMono.variable} bg-paper text-ink antialiased font-sans`}
       >
-        {children}
+        <SmoothScroll>
+          <div className="relative min-h-screen w-full">
+            <GridLines />
+            <div className="relative z-10">
+              {children}
+            </div>
+          </div>
+        </SmoothScroll>
       </body>
     </html>
   );

@@ -1,28 +1,58 @@
-import { Code2, Globe2, Settings2, Zap, TrendingUp } from "lucide-react";
+"use client";
 
-const logos = [
+import { Code2, Globe2, Settings2, Zap, TrendingUp, Layers, Cpu, Sparkles } from "lucide-react";
+
+const clients = [
   { name: "Acme Corp", icon: Code2 },
   { name: "GlobalNet", icon: Globe2 },
-  { name: "TechFlow", icon: Settings2 },
+  { name: "TechFlow Systems", icon: Settings2 },
   { name: "ZapMedia", icon: Zap },
   { name: "GrowthInc", icon: TrendingUp },
+  { name: "LayerCraft", icon: Layers },
+  { name: "Nexus AI", icon: Cpu },
+  { name: "Verve Digital", icon: Sparkles },
 ];
 
 export function TrustedBy() {
   return (
-    <section className="border-b border-line bg-panel/50">
-      <div className="mx-auto max-w-[1240px] px-6 py-10 lg:px-8">
-        <p className="mb-7 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
-          Trusted by forward-thinking companies
+    <section className="relative overflow-hidden border-b border-line bg-panel/60 py-12">
+      <div className="mx-auto max-w-[var(--container-max)] px-6 lg:px-8">
+        <p className="mb-8 text-center font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+          Trusted by high-growth startups & businesses
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 sm:gap-x-14">
-          {logos.map(({ name, icon: Icon }) => (
+      </div>
+
+      {/* Marquee with left/right fade masks */}
+      <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+        <div
+          className="marquee-track flex items-center gap-12 sm:gap-16"
+          style={{ "--marquee-duration": "28s" } as React.CSSProperties}
+        >
+          {/* First set of logos */}
+          {clients.map(({ name, icon: Icon }, idx) => (
             <div
-              key={name}
-              className="flex items-center gap-2 text-ink-faint transition-colors hover:text-ink-soft"
+              key={`logo-1-${idx}`}
+              className="group flex shrink-0 items-center gap-3 text-ink-faint transition-all duration-300 hover:text-ink cursor-default"
             >
-              <Icon className="size-4" strokeWidth={1.75} />
-              <span className="text-[14.5px] font-semibold tracking-tight">
+              <div className="flex size-9 items-center justify-center rounded-md border border-line bg-paper transition-colors group-hover:border-signal/40 group-hover:bg-signal-soft/40">
+                <Icon className="size-4 transition-colors group-hover:text-signal" strokeWidth={1.8} />
+              </div>
+              <span className="font-sans text-[14px] font-medium tracking-tight text-ink-soft transition-colors group-hover:text-ink">
+                {name}
+              </span>
+            </div>
+          ))}
+
+          {/* Duplicate set for seamless infinite loop */}
+          {clients.map(({ name, icon: Icon }, idx) => (
+            <div
+              key={`logo-2-${idx}`}
+              className="group flex shrink-0 items-center gap-3 text-ink-faint transition-all duration-300 hover:text-ink cursor-default"
+            >
+              <div className="flex size-9 items-center justify-center rounded-md border border-line bg-paper transition-colors group-hover:border-signal/40 group-hover:bg-signal-soft/40">
+                <Icon className="size-4 transition-colors group-hover:text-signal" strokeWidth={1.8} />
+              </div>
+              <span className="font-sans text-[14px] font-medium tracking-tight text-ink-soft transition-colors group-hover:text-ink">
                 {name}
               </span>
             </div>

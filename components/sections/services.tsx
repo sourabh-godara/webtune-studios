@@ -1,84 +1,73 @@
-import { Globe, Zap, Bot, ArrowRight } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+"use client";
 
-type Service = {
-  id: string;
-  icon: LucideIcon;
-  title: string;
-  description: string;
-};
+import { motion } from "motion/react";
+import { fadeUpVariants } from "@/components/animations";
 
-const services: Service[] = [
+const services = [
   {
-    id: "01",
-    icon: Globe,
-    title: "Website development",
+    num: "01",
+    title: "Web design",
     description:
-      "High-converting, lightning-fast business websites, landing pages, and ecommerce stores, built with modern frameworks and tuned for search.",
+      "We create compelling web designs, which are the right-fit for your target groups.",
   },
   {
-    id: "02",
-    icon: Zap,
-    title: "Business automation",
+    num: "02",
+    title: "Web development",
     description:
-      "Automated lead capture, bulk WhatsApp messaging, CRM updates, and customer follow-ups. We remove the manual work from your daily operations.",
+      "We create compelling web designs, which are the right-fit for your target groups.",
   },
   {
-    id: "03",
-    icon: Bot,
-    title: "AI solutions",
+    num: "03",
+    title: "eCommerce solutions",
     description:
-      "Custom AI chatbots, intelligent customer support agents, and content generation pipelines, trained and tailored to your specific niche.",
+      "We create compelling web designs, which are the right-fit for your target groups.",
+  },
+  {
+    num: "04",
+    title: "Automation systems",
+    description:
+      "We build autonomous workflows that eliminate repetitive busywork and scale operations.",
   },
 ];
 
 export function Services() {
   return (
-    <section id="services" className="border-b border-line py-24 sm:py-28">
-      <div className="mx-auto max-w-[1240px] px-6 lg:px-8">
-        <div className="mx-auto max-w-[600px] text-center">
-          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-signal-deep">
-            What we build
-          </span>
-          <h2 className="mt-3 text-balance font-[family-name:var(--font-display)] text-[34px] font-semibold tracking-[-0.01em] text-ink sm:text-[42px]">
-            Our services
-          </h2>
-          <p className="mt-4 text-balance text-[16px] leading-relaxed text-ink-soft">
-            End-to-end digital solutions that transform how your business
-            operates and shows up online.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => (
-            <div
-              key={service.id}
-              className="group relative flex flex-col rounded-md border border-line-strong bg-panel p-7 transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-[0_16px_36px_-20px_rgba(20,20,15,0.25)]"
+    <section id="services" className="relative border-b border-line py-16 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-[var(--container-max)] px-6 lg:px-8">
+        {/* 4-Column Services Grid matching the 4-Column Grid Lines */}
+        <div className="grid grid-cols-1 divide-y divide-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
+          {services.map((item, i) => (
+            <motion.div
+              key={item.num}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeUpVariants}
+              custom={i}
+              className="group flex flex-col py-8 px-6 sm:px-6 lg:px-7 sm:py-4"
             >
-              <div className="mb-6 flex items-start justify-between">
-                <span className="flex size-11 items-center justify-center rounded-[6px] bg-signal-soft text-signal-deep">
-                  <service.icon className="size-5" strokeWidth={2} />
-                </span>
-                <span className="font-mono text-[11px] text-ink-faint">
-                  MODULE / {service.id}
-                </span>
+              {/* Giant Outlined / Stroked Number with Hover Slide Animation */}
+              <div
+                aria-hidden="true"
+                style={{
+                  WebkitTextStroke: "1px #dedede",
+                  color: "transparent",
+                }}
+                className="pointer-events-none select-none font-[family-name:var(--font-display)] text-[clamp(76px,6.5vw,94px)] font-bold leading-none tracking-tight transition-transform duration-500 ease-out group-hover:translate-x-4 group-hover:scale-105"
+              >
+                {item.num}
               </div>
 
-              <h3 className="font-[family-name:var(--font-display)] text-[19px] font-semibold tracking-tight text-ink">
-                {service.title}
+              {/* Title Overlapping Lower Half of Stroked Number */}
+              <h3 className="relative -mt-6 z-10 font-[family-name:var(--font-display)] text-[19px] sm:text-[20px] font-semibold text-ink">
+                {item.title}
               </h3>
-              <p className="mt-2.5 flex-1 text-[14.5px] leading-relaxed text-ink-soft">
-                {service.description}
-              </p>
 
-              <a
-                href="#contact"
-                className="mt-6 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-ink transition-colors group-hover:text-signal-deep"
-              >
-                Learn more
-                <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </div>
+              {/* Description */}
+              <p className="mt-3 text-[15px] leading-[28px] text-ink-soft">
+                {item.description}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>
