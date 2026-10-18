@@ -1,12 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* ---------------------------------------------------------
-   WebTune Studios — design tokens (Crafto Web Agency reference)
-   Palette: Pure white paper, deep ink, Electric Lime (#b5ff00).
-   Zero orange.
---------------------------------------------------------- */
-
 :root {
   --paper: #ffffff;
   --panel: #fbfbfb;
@@ -20,10 +14,8 @@
   --signal-deep: #9ee000;
   --signal-soft: #f4ffd9;
   --on-signal: #000000;
-  /* text/icons placed on the lime accent */
   --success: #1a9c5c;
 
-  /* Dark section tokens */
   --dark-bg: #141416;
   --dark-panel: #1d1d21;
   --dark-ink: #ffffff;
@@ -37,14 +29,12 @@
 
   --radius: 6px;
 
-  /* Layout */
   --section-py: clamp(80px, 10vw, 130px);
   --container-max: 1240px;
   --container-narrow: 1100px;
   --grid-columns: 4;
   --grid-line-color: var(--line);
 
-  /* Hero */
   --size-sunburst: min(85vw, 44rem);
   --text-hero-word: clamp(260px, 44vw, 650px);
   --tracking-hero-word: -0.062em;
@@ -64,7 +54,6 @@
   --color-signal-soft: var(--signal-soft);
   --color-success: var(--success);
 
-  /* Accent aliases (used by Hero): change --signal to rebrand everything */
   --color-accent: var(--signal);
   --color-accent-hover: var(--signal-deep);
   --color-on-accent: var(--on-signal);
@@ -89,7 +78,6 @@
   --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
 }
 
-/* Typography scale: generates text-hero-word, text-hero-title, etc. */
 @theme {
   --text-hero-word: clamp(260px, 44vw, 650px);
   --text-hero-watermark: clamp(7.5rem, 22vw, 20rem);
@@ -116,7 +104,6 @@ body {
   color: var(--on-signal);
 }
 
-/* Lenis smooth scroll styles */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -134,7 +121,6 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* Blueprint dot-grid texture */
 .bg-dot-grid {
   background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
   background-size: 28px 28px;
@@ -145,7 +131,6 @@ html.lenis body {
   text-wrap: balance;
 }
 
-/* ---- Marquee ---- */
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -166,7 +151,6 @@ html.lenis body {
   animation-play-state: paused;
 }
 
-/* ---- Button hover fill effect ---- */
 .btn-fill-hover {
   position: relative;
   overflow: hidden;
@@ -187,7 +171,6 @@ html.lenis body {
   transform: scaleX(1);
 }
 
-/* ---- Signature animations ---- */
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -242,7 +225,6 @@ html.lenis body {
   }
 }
 
-/* ---- Dark section utility ---- */
 .section-dark {
   background-color: var(--dark-bg);
   color: var(--dark-ink);
@@ -272,7 +254,6 @@ html.lenis body {
   background-color: var(--dark-panel);
 }
 
-/* ---- Grid lines entrance animation ---- */
 @keyframes grid-line-draw {
   0% {
     transform: scaleY(0);
@@ -289,7 +270,6 @@ html.lenis body {
   animation: grid-line-draw 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* ---- Reduced motion ---- */
 @media (prefers-reduced-motion: reduce) {
 
   *,

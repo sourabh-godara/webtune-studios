@@ -22,13 +22,11 @@ export function TrustedBy() {
         </p>
       </div>
 
-      {/* Marquee with left/right fade masks */}
       <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
         <div
           className="marquee-track flex items-center gap-12 sm:gap-16"
           style={{ "--marquee-duration": "28s" } as React.CSSProperties}
         >
-          {/* First set of logos */}
           {clients.map(({ name, icon: Icon }, idx) => (
             <div
               key={`logo-1-${idx}`}
@@ -43,7 +41,6 @@ export function TrustedBy() {
             </div>
           ))}
 
-          {/* Duplicate set for seamless infinite loop */}
           {clients.map(({ name, icon: Icon }, idx) => (
             <div
               key={`logo-2-${idx}`}

@@ -10,11 +10,6 @@ import {
   type Variants,
 } from "motion/react";
 
-/* ----------------------------------------------------------------
-   Shared animation variants matching the Crafto reference timings:
-   600-800ms, easeOutQuad, translateY 30→0, opacity 0→1
------------------------------------------------------------------ */
-
 export const fadeUpVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number = 0) => ({
@@ -23,7 +18,7 @@ export const fadeUpVariants: Variants = {
     transition: {
       duration: 0.6,
       delay: i * 0.15,
-      ease: [0.25, 0.46, 0.45, 0.94], // easeOutQuad
+      ease: [0.25, 0.46, 0.45, 0.94],
     },
   }),
 };
@@ -49,10 +44,6 @@ export const scaleInVariants: Variants = {
     },
   },
 };
-
-/* ----------------------------------------------------------------
-   Reusable scroll-triggered section wrapper
------------------------------------------------------------------ */
 
 const motionComponents = {
   div: motion.div,
@@ -99,10 +90,6 @@ export function AnimateOnScroll({
     </Component>
   );
 }
-
-/* ----------------------------------------------------------------
-   Animated counter for stats — counts up from 0 to target
------------------------------------------------------------------ */
 
 export function AnimatedCounter({
   target,

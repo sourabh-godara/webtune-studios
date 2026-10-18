@@ -3,12 +3,6 @@
 import { Globe, Users, MessageSquare, Bell, ArrowRight, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* ------------------------------------------------------------------
-   Signature element: an automation pipeline diagram.
-   Two renderings of the same idea — data moving through connected
-   steps — because that motion IS the product WebTune sells.
-------------------------------------------------------------------- */
-
 const strip = [
   { label: "Build" },
   { label: "Automate" },

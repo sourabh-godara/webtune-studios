@@ -1,17 +1,18 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import { fadeUpVariants } from "@/components/animations";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 
 export function Cta() {
+  const rawWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919779043521";
+  const whatsappNumber = rawWhatsApp.replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi, I'd like a quote for a website")}`;
+
   return (
     <section id="contact" className="relative overflow-hidden border-b border-line pt-24 pb-20 sm:pt-36 sm:pb-28">
       <div className="relative mx-auto max-w-[var(--container-max)] px-6 lg:px-8">
-        {/* ==============================================================
-            GIANT SPLIT TEXT: "work together" (Matches Reference Screenshot)
-            "work" in black ink + circular floating badge + "together" in lime #b5ff00
-           ============================================================== */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -22,7 +23,6 @@ export function Cta() {
           <div className="relative inline-flex flex-wrap items-center font-[family-name:var(--font-display)] text-[clamp(68px,15vw,210px)] font-black leading-[0.88] tracking-[-0.05em]">
             <span className="text-ink">work</span>
 
-            {/* Circular Floating Badge with rotating text + lime center '1' */}
             <div className="relative mx-4 inline-flex size-14 sm:size-20 lg:size-24 items-center justify-center rounded-full border border-line-strong bg-paper shadow-lg">
               <span className="flex size-7 sm:size-10 items-center justify-center rounded-full bg-[#b5ff00] font-mono text-[14px] sm:text-[18px] font-bold text-black">
                 1
@@ -48,57 +48,54 @@ export function Cta() {
           </div>
         </motion.div>
 
-        {/* Sub-headline: "Let's make something great work together?" with underline */}
         <div className="mt-14 pt-8 border-t border-line">
           <h2 className="font-[family-name:var(--font-display)] text-[clamp(24px,4vw,38px)] font-bold tracking-tight text-ink">
-            Let&rsquo;s make something great{" "}
+            Planning a website or online store?{" "}
             <span className="underline decoration-ink decoration-2 underline-offset-8">
-              work together?
+              Let&rsquo;s talk.
             </span>
           </h2>
         </div>
 
-        {/* Editorial Contact Columns (Matches Screenshot Section 9 Exactly) */}
         <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:items-end lg:gap-8">
-          {/* Studio Location 1 */}
           <div className="lg:col-span-4">
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
-              WebTune — Mohali
+              WebTune Studios — Mohali
             </p>
             <p className="mt-2 text-[14.5px] text-ink-soft">
               Sector 82, JLPL Industrial Area
             </p>
             <p className="font-mono text-[13px] text-ink-faint">
-              Mohali, Punjab, India
+              Mohali, Punjab 140301, India
             </p>
           </div>
 
-          {/* Studio Location 2 / Direct Inquiry */}
           <div className="lg:col-span-4">
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
               Direct Inquiry
             </p>
             <a
-              href="mailto:webtunestudio360@gmail.com"
-              className="mt-2 block text-[14.5px] font-semibold text-ink transition-colors hover:text-[#9ee000]"
+              href="mailto:sourabh@webtunestudios.in"
+              className="mt-2 block text-[14.5px] font-semibold text-ink transition-colors hover:text-[#7bb300]"
             >
-              webtunestudio360@gmail.com
+              sourabh@webtunestudios.in
             </a>
             <p className="font-mono text-[13px] text-ink-faint">
-              Response within 2 hours
+              Direct response from our lead developer
             </p>
           </div>
 
-          {/* Right Logo Badge + Phone Number + Book Consultation */}
           <div className="flex flex-col gap-4 sm:items-start lg:col-span-4 lg:items-end">
             <div className="flex items-center gap-3">
-              <span className="flex size-9 items-center justify-center rounded-full bg-ink text-white shadow-sm">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" fill="#15140f" />
-                  <path d="M7 16L10 8H14L17 16M9 13.5H15" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                  <circle cx="15.5" cy="8.5" r="2" fill="#b5ff00" />
-                </svg>
-              </span>
+              <div className="relative flex size-9 items-center justify-center">
+                <Image
+                  src="/logo.png"
+                  alt="WebTune Studios Logo"
+                  width={36}
+                  height={36}
+                  className="size-full object-contain"
+                />
+              </div>
               <a
                 href="tel:+919779043521"
                 className="font-mono text-[17px] font-bold tracking-tight text-ink transition-colors hover:text-black"
@@ -107,13 +104,24 @@ export function Cta() {
               </a>
             </div>
 
-            <a
-              href="mailto:webtunestudio360@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full bg-[#b5ff00] px-7 py-3 text-[13px] font-bold uppercase tracking-wider text-black shadow-sm transition-all duration-200 hover:bg-[#9ee000] hover:shadow-md hover:-translate-y-0.5"
-            >
-              <span>Book consultation</span>
-              <ArrowUpRight className="size-4" strokeWidth={2.5} />
-            </a>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="mailto:sourabh@webtunestudios.in"
+                className="inline-flex items-center gap-2 rounded-full bg-[#b5ff00] px-6 py-3 text-[13px] font-bold uppercase tracking-wider text-black shadow-sm transition-all duration-200 hover:bg-[#9ee000] hover:shadow-md hover:-translate-y-0.5"
+              >
+                <span>Get a free quote</span>
+                <ArrowUpRight className="size-4" strokeWidth={2.5} />
+              </a>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-panel px-5 py-3 text-[13px] font-bold uppercase tracking-wider text-ink transition-all duration-200 hover:bg-paper hover:border-ink hover:-translate-y-0.5"
+              >
+                <MessageCircle className="size-4 text-[#7bb300]" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

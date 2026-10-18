@@ -3,7 +3,6 @@ import { Fragment } from "react";
 const categories = [
   { label: "E-commerce", count: "01" },
   { label: "Portfolio", count: "01" },
-  { label: "Automation", count: "01" },
 ];
 
 export function WorkHero() {
@@ -22,11 +21,10 @@ export function WorkHero() {
           Selected work
         </span>
         <h1 className="mt-3 text-balance font-[family-name:var(--font-display)] text-[40px] font-semibold leading-[1.1] tracking-[-0.02em] text-ink sm:text-[52px]">
-          Systems we&rsquo;ve shipped
+          Websites and stores we&rsquo;ve built
         </h1>
-        <p className="mx-auto mt-4 max-w-[520px] text-balance text-[16.5px] leading-relaxed text-ink-soft">
-          A closer look at recent builds — from storefronts to portfolios to
-          the automations running quietly in the background.
+        <p className="mx-auto mt-4 max-w-[540px] text-balance text-[16.5px] leading-relaxed text-ink-soft">
+          A closer look at recent builds — from online stores to creator portfolios and fast, search-friendly business websites.
         </p>
 
         <div className="mt-9 flex items-center justify-center gap-6 sm:gap-10">

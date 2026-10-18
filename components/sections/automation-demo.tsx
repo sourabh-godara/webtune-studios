@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { Globe, Users, MessageSquare, Bell, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Globe, Users, MessageSquare, Bell, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Step = {
@@ -65,9 +64,7 @@ export function AutomationDemo() {
   return (
     <section className="section-dark relative z-10 overflow-hidden bg-[var(--dark-bg)] py-24 text-white sm:py-32">
       <div className="relative mx-auto max-w-[var(--container-max)] px-6 lg:px-8">
-        {/* Top Half: Testimonial & Rating (Matches Dark Section in Screenshot) */}
         <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-16 pb-20 border-b border-white/10">
-          {/* Left: 4.82 Rating + Stars + Prev/Next Controls */}
           <div className="lg:col-span-4">
             <div className="flex items-baseline gap-3">
               <span className="font-[family-name:var(--font-display)] text-[56px] font-black tracking-tight text-white leading-none sm:text-[64px]">
@@ -84,7 +81,6 @@ export function AutomationDemo() {
               Clutch &amp; Google Reviews
             </p>
 
-            {/* Prev / Next circular buttons matching screenshot */}
             <div className="mt-8 flex items-center gap-2.5">
               <button
                 className="flex size-10 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-[#b5ff00] hover:text-[#b5ff00]"
@@ -101,7 +97,6 @@ export function AutomationDemo() {
             </div>
           </div>
 
-          {/* Right: Featured Quote */}
           <div className="lg:col-span-8">
             <blockquote className="font-[family-name:var(--font-display)] text-[clamp(24px,3.5vw,36px)] font-medium leading-[1.28] tracking-tight text-white/95">
               &ldquo;The <span className="font-bold underline decoration-[#b5ff00] decoration-2 underline-offset-8">wonderful services</span> you offer locally are great for our community. People are relieved to have seamless web and automation systems that just work.&rdquo;
@@ -112,7 +107,6 @@ export function AutomationDemo() {
           </div>
         </div>
 
-        {/* Middle: Signature Live Automation Workflow Engine */}
         <div className="pt-20 pb-20 border-b border-white/10">
           <div className="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div>
@@ -132,7 +126,6 @@ export function AutomationDemo() {
             </div>
           </div>
 
-          {/* 4 sequential steps lighting up in Electric Lime */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, idx) => {
               const isActive = activeStep === idx;
@@ -180,7 +173,6 @@ export function AutomationDemo() {
           </div>
         </div>
 
-        {/* Bottom Half: Prominent Monochrome Client Logos (Matches Reference Bottom) */}
         <div className="pt-16">
           <p className="text-center font-mono text-[11px] uppercase tracking-[0.2em] text-white/40 mb-10">
             Trusted by modern enterprise brands

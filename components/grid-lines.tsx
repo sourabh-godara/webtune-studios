@@ -18,12 +18,6 @@ interface GridLinesProps {
 }
 
 export function GridLines({ className, animate = true }: GridLinesProps) {
-  // 5 lines for a 4-column layout on desktop:
-  // - Line 0: left container edge (always visible)
-  // - Line 1: 25% column boundary (visible on lg+)
-  // - Line 2: 50% center column boundary (visible on md+)
-  // - Line 3: 75% column boundary (visible on lg+)
-  // - Line 4: right container edge (always visible)
   const lines = [
     { id: "col-line-0", visibility: "block" },
     { id: "col-line-1", visibility: "hidden lg:block" },

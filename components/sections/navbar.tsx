@@ -3,13 +3,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
   { label: "Home", href: "/#home" },
-  { label: "Expertise", href: "/#services" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Services", href: "/#services" },
+  { label: "Work", href: "/work" },
+  { label: "Mohali", href: "/web-development-company-mohali" },
   { label: "Process", href: "/#process" },
   { label: "Contact", href: "/#contact" },
 ];
@@ -38,36 +40,32 @@ export function Navbar() {
       <div
         className={cn(
           "mx-auto flex w-full max-w-[1470px] items-center justify-between px-6 transition-all duration-300 sm:px-10 lg:px-14 overflow-visible",
-          scrolled ? "h-[80px]" : "h-[116px]"
+          scrolled ? "h-[76px]" : "h-[100px]"
         )}
       >
-        {/* Logo matching circular black emblem in screenshot */}
         <Link href="/" className="flex items-center gap-3 group">
-          <span className="flex size-11 items-center justify-center rounded-full bg-ink text-white shadow-sm transition-transform duration-300 group-hover:scale-105">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10" fill="#15140f" />
-              <path
-                d="M7 16L10 8H14L17 16M9 13.5H15"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <circle cx="15.5" cy="8.5" r="2" fill="var(--signal)" />
-            </svg>
-          </span>
-          <span className="hidden font-sans text-[19px] font-bold tracking-tight text-ink sm:inline-block">
+          <div className="relative flex size-10 items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <Image
+              src="/logo.png"
+              alt="WebTune Studios Logo"
+              width={40}
+              height={40}
+              priority
+              className="size-full object-contain"
+            />
+          </div>
+          <span className="font-sans text-[18px] font-bold tracking-tight text-ink sm:inline-block">
             WebTune<span className="text-ink-faint font-normal">Studios</span>
           </span>
         </Link>
 
-        {/* Centered nav links matching exact text properties: Inter, 17px, 400 normal, 32px line height, 0px letter spacing */}
-        <nav className="hidden items-center gap-8 xl:gap-10 lg:flex">
+        <nav className="hidden items-center gap-7 xl:gap-9 lg:flex">
           {links.map((link) => {
-            const isAgency = link.label === "Agency";
             const active =
               link.href === "/work"
                 ? pathname === "/work"
+                : link.href === "/web-development-company-mohali"
+                ? pathname === "/web-development-company-mohali"
                 : pathname === "/" && link.href === "/#home";
 
             return (
@@ -75,9 +73,9 @@ export function Navbar() {
                 key={link.label}
                 href={link.href}
                 className={cn(
-                  "font-sans text-[18px] font-medium leading-[20px] tracking-[0px] text-start transition-colors hover:text-ink",
-                  isAgency || active
-                    ? "text-ink"
+                  "font-sans text-[16px] font-medium leading-[20px] tracking-[0px] text-start transition-colors hover:text-ink",
+                  active
+                    ? "text-ink font-semibold"
                     : "text-ink-soft"
                 )}
               >
@@ -87,18 +85,16 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Right CTA matching black pill button in screenshot */}
         <div className="hidden items-center gap-4 lg:flex">
           <Link
             href="/#contact"
-            className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3 text-[14px] font-semibold text-white shadow-md transition-all duration-200 hover:bg-ink/80 hover:shadow-lg hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-2.5 text-[13.5px] font-semibold text-white shadow-md transition-all duration-200 hover:bg-ink/80 hover:shadow-lg hover:-translate-y-0.5"
           >
-            <span>Hire agency</span>
+            <span>Get a quote</span>
             <ArrowUpRight className="size-4" />
           </Link>
         </div>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
           className="flex size-10 items-center justify-center rounded-full bg-panel border border-line text-ink lg:hidden"
@@ -128,12 +124,11 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile drawer */}
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out lg:hidden",
           open
-            ? "max-h-[420px] border-t border-line bg-paper/98 backdrop-blur-xl shadow-xl"
+            ? "max-h-[460px] border-t border-line bg-paper/98 backdrop-blur-xl shadow-xl"
             : "max-h-0"
         )}
       >
@@ -143,7 +138,7 @@ export function Navbar() {
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="py-2.5 font-sans text-[18px] font-medium leading-[20px] tracking-[0px] text-start text-ink-soft transition-colors hover:text-ink"
+              className="py-2.5 font-sans text-[17px] font-medium leading-[20px] tracking-[0px] text-start text-ink-soft transition-colors hover:text-ink"
             >
               {link.label}
             </Link>
@@ -155,7 +150,7 @@ export function Navbar() {
             onClick={() => setOpen(false)}
             className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-3 text-[14px] font-semibold text-white shadow-md"
           >
-            <span>Hire agency</span>
+            <span>Get a quote</span>
             <ArrowUpRight className="size-4" />
           </Link>
         </div>

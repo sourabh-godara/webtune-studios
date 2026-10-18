@@ -6,9 +6,27 @@ import { WorkHero } from "@/components/work/work-hero";
 import { ProjectCard, projects } from "@/components/work/project-card";
 
 export const metadata: Metadata = {
-  title: "Our Work — WebTune Studios",
+  title: "Our Work | WebTune Studios",
   description:
-    "Selected projects from WebTune Studios: e-commerce platforms, portfolio sites, and business automation systems, built with Next.js, React, and n8n.",
+    "Selected web development and eCommerce projects from WebTune Studios: online stores, business websites, and creator portfolios built with Next.js and Supabase.",
+  alternates: {
+    canonical: "/work",
+  },
+  openGraph: {
+    title: "Our Work | WebTune Studios",
+    description:
+      "Selected web development and eCommerce projects from WebTune Studios: online stores, business websites, and creator portfolios.",
+    url: "https://www.webtunestudios.in/work",
+    siteName: "WebTune Studios",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Work | WebTune Studios",
+    description:
+      "Selected web development and eCommerce projects from WebTune Studios: online stores, business websites, and creator portfolios.",
+  },
 };
 
 export default function WorkPage() {

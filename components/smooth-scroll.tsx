@@ -7,7 +7,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Respect prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -29,7 +28,6 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
     requestAnimationFrame(raf);
 
-    // Handle hash anchors for navbar links (#services, #process, #contact, etc.)
     const handleHashClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a");
@@ -47,13 +45,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       e.preventDefault();
       lenis.scrollTo(el, { offset: -80 });
 
-      // Update URL hash without scroll
       window.history.pushState(null, "", `#${hash}`);
     };
 
     document.addEventListener("click", handleHashClick);
 
-    // Handle initial hash on load
     if (window.location.hash) {
       const hash = window.location.hash.slice(1);
       const el = document.getElementById(hash);

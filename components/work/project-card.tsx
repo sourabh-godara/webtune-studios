@@ -1,17 +1,9 @@
 import {
   ArrowUpRight,
-  Lock,
   ShoppingCart,
   Play,
-  CalendarCheck2,
-  Zap,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-/* ------------------------------------------------------------------
-   Project data
-------------------------------------------------------------------- */
 
 export type Project = {
   id: string;
@@ -21,7 +13,7 @@ export type Project = {
   description: string;
   tools: string[];
   url?: string;
-  thumb: "ecommerce" | "portfolio" | "automation";
+  thumb: "ecommerce" | "portfolio";
 };
 
 export const projects: Project[] = [
@@ -67,30 +59,7 @@ export const projects: Project[] = [
     url: "https://jaysalvfx.com",
     thumb: "portfolio",
   },
-  {
-    id: "03",
-    title: "WhatsApp Appointment Automation",
-    client: "Service business — internal system",
-    category: "Automation",
-    description:
-      "An intelligent WhatsApp automation that lets customers book, reschedule, and cancel appointments through natural conversation. Workflows validate availability, update calendars, send confirmations and reminders, and sync with internal business systems to cut manual admin work.",
-    tools: [
-      "n8n",
-      "WhatsApp Business (Meta Cloud API)",
-      "Webhooks",
-      "REST APIs",
-      "Google Calendar",
-      "JavaScript",
-      "AI Chatbot Integration",
-    ],
-    thumb: "automation",
-  },
 ];
-
-/* ------------------------------------------------------------------
-   Thumbnails — abstract, built from the studio's own visual language
-   rather than screenshots, so every project reads as one system.
-------------------------------------------------------------------- */
 
 function BrowserChrome({
   domain,
@@ -162,77 +131,10 @@ function PortfolioThumb() {
   );
 }
 
-function ChatBubble({
-  text,
-  meta,
-  align,
-  icon: Icon,
-}: {
-  text: string;
-  meta: string;
-  align: "left" | "right";
-  icon?: LucideIcon;
-}) {
-  return (
-    <div className={cn("flex flex-col", align === "right" ? "items-end" : "items-start")}>
-      <div
-        className={cn(
-          "max-w-[80%] rounded-[10px] px-3 py-2 text-[11.5px] leading-snug",
-          align === "right"
-            ? "rounded-tr-[3px] bg-signal text-black font-medium"
-            : "rounded-tl-[3px] border border-line-strong bg-panel text-ink",
-        )}
-      >
-        {text}
-      </div>
-      <div className="mt-1 flex items-center gap-1 font-mono text-[9.5px] text-ink-faint">
-        {Icon && <Icon className="size-2.5" />}
-        {meta}
-      </div>
-    </div>
-  );
-}
-
-function AutomationThumb() {
-  return (
-    <div className="flex h-full flex-col overflow-hidden rounded-md border border-line-strong bg-panel">
-      <div className="flex shrink-0 items-center justify-between border-b border-line-strong bg-paper px-3.5 py-2.5">
-        <span className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-ink-faint">
-          Appointments bot
-        </span>
-        <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-success">
-          <span className="size-1.5 rounded-full bg-success" />
-          Active
-        </span>
-      </div>
-      <div className="flex flex-1 flex-col justify-center gap-3 bg-dot-grid p-4">
-        <ChatBubble align="left" text="Can I book a slot tomorrow at 3pm?" meta="Customer" />
-        <ChatBubble
-          align="right"
-          text="Confirmed for 3:00 PM — added to your calendar."
-          meta="Auto-replied in 2s"
-          icon={CalendarCheck2}
-        />
-      </div>
-      <div className="flex shrink-0 items-center gap-1.5 border-t border-line-strong px-3.5 py-2">
-        <Zap className="size-3 text-signal-deep" strokeWidth={2} />
-        <span className="font-mono text-[9.5px] text-ink-faint">
-          n8n workflow → Google Calendar → WhatsApp
-        </span>
-      </div>
-    </div>
-  );
-}
-
 const thumbnails = {
   ecommerce: EcommerceThumb,
   portfolio: PortfolioThumb,
-  automation: AutomationThumb,
 };
-
-/* ------------------------------------------------------------------
-   Card
-------------------------------------------------------------------- */
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const Thumb = thumbnails[project.thumb];
@@ -278,7 +180,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         </div>
 
         <div className="mt-6">
-          {project.url ? (
+          {project.url && (
             <a
               href={project.url}
               target="_blank"
@@ -288,11 +190,6 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               Visit live site
               <ArrowUpRight className="size-3.5" />
             </a>
-          ) : (
-            <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-ink-faint">
-              <Lock className="size-3.5" />
-              Private system — internal client tool
-            </span>
           )}
         </div>
       </div>
